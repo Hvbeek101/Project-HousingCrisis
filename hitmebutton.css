@@ -1,0 +1,50 @@
+
+.btn {
+  margin:20px;
+  font-family:  400 1.125em/1.5 'Avenir Next', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  padding: 1.222em 2em 1.111em 2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #FFF;
+  text-decoration: none;
+  background: #f11313;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+  transition: .1s background, .1s transform;
+}
+.btn:hover {
+  background: #f11313;
+  -webkit-transform: translate3d(0, 8px, 0);
+          transform: translate3d(0, 8px, 0);
+}
+.btn:hover:after, .btn:hover:before {
+  height: 0;
+  background: #9d2530;
+}
+.btn:after, .btn:before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  width: 50%;
+  height: 8px;
+  background: #9d2530;
+  transition: .1s height, .1s background;
+}
+.btn:after {
+  right: 0;
+  -webkit-transform: skewX(-45deg);
+          transform: skewX(-45deg);
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+}
+.btn:before {
+  left: 0;
+  -webkit-transform: skewX(45deg);
+          transform: skewX(45deg);
+  -webkit-transform-origin: 100% 0;
+          transform-origin: 100% 0;
+}

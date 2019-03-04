@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Kamercrisis-search</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="navbar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="hitmebutton.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="loginmodal.css" />
+    <link rel="stylesheet" href="searchcssscss/style.css">
+    <link rel="shortcut icon" href="favicon(1).ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="main.js"></script>
+    <script src="navbar.js"></script>
+    <style>
+            * {
+              box-sizing: border-box;
+            }
+
+            .price-tag-search-index{
+              color:#005480;
+            }
+            /* .box {
+  width: 200px; height: 300px;
+  position: relative;
+  border: 1px solid #BBB;
+  background: #EEE;
+} */
+.ribbon {
+  position: absolute;
+  left: -5px; top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 75px; height: 75px;
+  text-align: right;
+}
+.ribbon span {
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  width: 100px;
+  display: block;
+  background: #79A70A;
+  background: linear-gradient(#9BC90D 0%, #79A70A 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px; left: -21px;
+}
+.ribbon span::before {
+  content: "";
+  position: absolute; left: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid #79A70A;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #79A70A;
+}
+.ribbon span::after {
+  content: "";
+  position: absolute; right: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #79A70A;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #79A70A;
+}
+
+
+
+            .grid-container-search-colums{
+              margin:0px 100px 0 100px;
+            }
+            .grid-container-search-colums-2srow{
+              margin:0px 100px 0 100px; 
+            }
+            #myInput {
+              background-image: url('/css/searchicon.png');
+              background-position: 10px 12px;
+              background-repeat: no-repeat;
+              width: 100%;
+              font-size: 16px;
+              padding: 12px 20px 12px 40px;
+              border: 1px solid #ddd;
+              margin-bottom: 12px;
+            }
+            
+            #myUL {
+              list-style-type: none;
+              padding: 0;
+              margin: 0;
+            }
+            
+            #myUL li a {
+              border: 1px solid #ddd;
+              margin-top: -1px; /* Prevent double borders */
+              background-color: #f6f6f6;
+              padding: 12px;
+              text-decoration: none;
+              font-size: 18px;
+              color: black;
+              display: block
+            }
+            
+            #myUL li a:hover:not(.header) {
+              background-color: #eee;
+            }
+            .grid-container-search-colums{
+              display: grid;
+              grid-template-columns: 1fr 3fr 0fr;
+              /* grid-template-rows: 1fr 1fr 1fr; */
+              grid-template-areas: "row1" "row2" "row3";
+          }
+          .grid-container-search-colums-2srow{
+              display: grid;
+              grid-template-columns: 1fr 2fr 1fr;
+              /* grid-template-rows: 1fr 1fr 1fr; */
+              grid-template-areas: "row1" "row2" "row3";
+          }
+          .grid-container-top-section{
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+            grid-template-areas: "row-0";
+            }
+          .button-float-events{
+            float:right;
+            width:90px;
+            border-radius:5px;
+            background-color: #4c61af;
+          }
+            </style>
+</head>
+
+
+<body>
+
+
+  
+<!-- login form -->
+  <div id="id01" class="modal">
+    
+    <form class="modal-content animate" action="/action_page.php">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <img src="img_avatar2.png" alt="Avatar" class="avatar">
+      </div>
+  
+      <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+  
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+          
+        <button type="submit">Login</button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+      </div>
+  
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+      </div>
+    </form>
+  </div>
+<!-- ----------------------------------------End of login form-------------------------------------------------------------------------   -->
+ <div class="header-brand">
+   <div class= "container-header">
+    <ul class="login-register-ul-right-top">
+      <li  onclick="document.getElementById('id01').style.display='block'" style="width:auto;"class ="login-register-right-top-li"><i class="far fa-user"></i>login</li>
+     <a href="register.html"><li class ="login-register-right-top-li"><i class="fas fa-user-plus"></i>Register</li></li></a>
+    </ul>
+  </div>
+    <div class="container-header">
+      <a href="index.html">
+      <img src="https://www.flaticon.com/premium-icon/icons/svg/1263/1263154.svg" style= "width: 68px;
+      margin: 10px 0px 0px 30px; padding:5px;" alt="">
+      <h2 class="h2-housing-project">Housing project</h2>
+    </a>
+    </div>
+</div> 
+    <header> 
+                <!-- #1527b2 color header idea!#2635a7 is also an idea -->
+    <nav class= "navbar-nav" >
+      <div class="container">
+            <div class= "menu">
+              <ul class="navbar-ul">
+                <li class="li-item1-navbar li-nav" >Home</li>
+                <li class="li-item2-navbar li-nav" >About</li>
+                <li class="li-item3-navbar li-nav" >Events</li>
+                <li class="li-item4-navbar li-nav" >Search</li>
+                <li class="li-item4-navbar li-nav" >Rent offers</li> 
+              </ul>
+            </div>
+            <div id="nav-bar-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div> 
+          </div>
+        </nav>
+        
+      </header>
+      
+      <!-- ////////////////////////////////////////////////////////////////////////////// -->
+      <!-- header h1 -->
+      <!-- ///////////////////////////////////////////////////////////////////////////// -->  
+      
+      
+    <!-- <div  style="    background-color: #f6f6f6; margin: 0px 100px 0px 550px;" class="grid-container-top-section">
+        
+       <div style="margin:15px" class="row-0">
+            <div class="top-search-bar-search-page">
+              <h3></p><b>Search</b></h3>
+              <input type="text">
+              <select name="options" id="">
+                <option value="Events">Events</option>
+                <option value="Events">Users</option>
+                <option value="Events">Offers</option>
+              </select>
+              <input type="submit" value="Submit">
+            </div>
+          </div>
+           
+        </div> 
+         -->
+      <div class="grid-container-search-colums">
+          <div style="margin:15px" class="row-1">
+          
+            <ul id="myUL">
+              <li><h3 style="margin-top: 5px;"></p><b>Search</b></h3></li>
+              
+
+              <div style="padding: 4px;
+              border: dashed #a9a9a9 5px;
+              margin-top: 10px;
+              width: 106%;
+              border-radius: 10px;" class="border-dashed-search">
+              <li> <input type="text" placeholder="Area or Postadress"></li>
+              <li> <select style="font-size: larger;" name="options" id="">
+                  <option value="Events">Events</option>
+                  <option value="Events">Users</option>
+                  <option value="Events">Offers</option>
+                </select> <select name="miles_from_max" style="font-size: larger;" id="radius">
+                    <option value="0">This area only</option>
+                    <option value="1">1 mile radius</option>
+                    <option value="2">2 mile radius</option>
+                    <option value="3">3 mile radius</option>
+                    <option value="4">4 mile radius</option>
+                    <option value="5">5 mile radius</option>
+                    <option value="10">10 mile radius</option>
+                    <option value="15">15 mile radius</option>
+                    <option value="20">20 mile radius</option>
+                    <option value="30">30 mile radius</option>
+                    <option value="40">40 mile radius</option>
+                  </select>  <input style="float:right; padding:0;font-size: larger;" type="submit" value="Submit">
+              </li>
+              <fieldset  style="border:white 2px solid;" class="search_filtered_by aside-form" data-widget="filters">
+                  <!-- <div class="aside-form_header">
+                    <legend class="aside-form_main-title">Filters</legend>
+                    <a data-reset-link="" role="button" tabindex="0" class="aside-form_reset" style="display: block;">Reset filters</a>
+                  </div> -->
+                  <section class="rent-options aside-form_section">
+                    <h3 style="margin-top: 5px" class="aside-form_title">Rent  </h3>
+                    <div id="rentRange">
+                     
+                <span>
+                   <input class="rent-input" type="number" style="font-size:19px;" min="1" max="99999" step="1" name="min_rent" value="" maxlength="5" size="5" placeholder="min" onkeypress="return event.key != 'Decimal'">
+                </span>
+                <span class="form_text_separator">to</span>
+                <span>
+                   <input class="rent-input" type="number" style="font-size:19px;" min="1" max="99999" step="1" name="max_rent" value="" maxlength="5" size="5" placeholder="max" onkeypress="return event.key != 'Decimal'">
+                </span>
+                <br>
+                <label class="form-aside_label2">
+                  <input type="radio" name="per" value="pw" checked="">
+                  per week
+                </label>
+                <label class="form-aside_label2">
+                  <input type="radio" name="per" value="pcm">
+                  per calendar month
+                </label>
+                    </div>
+                    
+                <label class="form-aside_label" for="billsIncluded">
+                  <input type="checkbox" name="bills_inc" id="billsIncluded" value="Yes">
+                  Bills included in the rent
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                    
+                  </section>
+                  
+                
+                    <section class="aside-form_section">
+                      <h3 style="margin-top: 5px;" class="aside-form_title">To move in</h3>
+                      <label class="form-aside_label">
+                  <input type="radio" name="available_search" value="N">
+                  Anytime
+                </label>
+                <span class="form-aside_label">
+                  <input type="radio" name="available_search" value="Y">
+                    <select name="day_avail" id="day_avail">\n<option value="01">01
+                </option><option value="02">02
+                </option><option value="03">03
+                </option><option value="04">04
+                </option><option value="05">05
+                </option><option value="06">06
+                </option><option value="07">07
+                </option><option value="08">08
+                </option><option value="09">09
+                </option><option value="10">10
+                </option><option value="11">11
+                </option><option value="12">12
+                </option><option value="13">13
+                </option><option value="14">14
+                </option><option value="15">15
+                </option><option value="16">16
+                </option><option value="17">17
+                </option><option value="18">18
+                </option><option value="19">19
+                </option><option value="20">20
+                </option><option value="21">21
+                </option><option value="22">22
+                </option><option value="23">23
+                </option><option value="24">24
+                </option><option value="25">25
+                </option><option value="26">26
+                </option><option value="27" selected="">27
+                </option><option value="28">28
+                </option><option value="29">29
+                </option><option value="30">30
+                </option><option value="31">31
+                </option></select>
+                <select name="mon_avail" id="mon_avail">\n<option value="01">01
+                </option><option value="02" selected="">02
+                </option><option value="03">03
+                </option><option value="04">04
+                </option><option value="05">05
+                </option><option value="06">06
+                </option><option value="07">07
+                </option><option value="08">08
+                </option><option value="09">09
+                </option><option value="10">10
+                </option><option value="11">11
+                </option><option value="12">12
+                </option></select>
+                
+                  <select name="year_avail" id="year_avail">\n<option value="2019" selected="">2019
+                </option><option value="2020">2020
+                </option><option value="2021">2021
+                </option></select>
+                
+                </span>
+                
+                      <br>
+                      <h3 style="margin-top: 5px;" class="aside-form_title">Length of stay</h3>
+                      <label class="form-aside_label" for="min_term">Minimum:&nbsp;
+                              <select name="min_term">
+                                  <option value="0">Any</option>
+                                  <option value="1">1 Month</option>
+                                  <option value="2">2 Months</option>
+                                  <option value="3">3 Months</option>
+                                  <option value="4">4 Months</option>
+                                  <option value="5">5 Months</option>
+                                  <option value="6">6 Months</option>
+                                  <option value="7">7 Months</option>
+                                  <option value="8">8 Months</option>
+                                  <option value="9">9 Months</option>
+                                  <option value="10">10 Months</option>
+                                  <option value="11">11 Months</option>
+                                  <option value="12">1 Year</option>
+                                  <option value="15">1 Year 3 Months</option>
+                                  <option value="18">1 Year 6 Months</option>
+                                  <option value="21">1 Year 9 Months</option>
+                                  <option value="24">2 Years</option>
+                              </select>
+                </label>
+                <label class="form-aside_label" for="max_term">Maximum:
+                              <select name="max_term">
+                                  <option value="0">Any</option>
+                                  <option value="1">1 Month</option>
+                                  <option value="2">2 Months</option>
+                                  <option value="3">3 Months</option>
+                                  <option value="4">4 Months</option>
+                                  <option value="5">5 Months</option>
+                                  <option value="6">6 Months</option>
+                                  <option value="7">7 Months</option>
+                                  <option value="8">8 Months</option>
+                                  <option value="9">9 Months</option>
+                                  <option value="10">10 Months</option>
+                                  <option value="11">11 Months</option>
+                                  <option value="12">1 Year</option>
+                                  <option value="15">1 Year 3 Months</option>
+                                  <option value="18">1 Year 6 Months</option>
+                                  <option value="21">1 Year 9 Months</option>
+                                  <option value="24">2 Years</option>
+                                  <option value="36">3 Years</option>
+                              </select>
+                </label>
+                      <br>
+                      <h3 style="margin-top: 5px;" class="aside-form_title">Days available</h3>
+                      <label class="form-aside_label" for="allPeriods">
+                  <input type="radio" name="days_of_wk_available" id="allPeriods" value="">
+                  All periods
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                
+                <label class="form-aside_label" for="wholeWeek">
+                  <input type="radio" name="days_of_wk_available" id="wholeWeek" value="7 days a week">
+                  7 days per week
+                  
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                
+                <label class="form-aside_label" for="monToFri">
+                  <input type="radio" name="days_of_wk_available" id="monToFri" value="Mon to Fri only">
+                  Mon to Fri only
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                
+                <label class="form-aside_label" for="weekendsOnly">
+                  <input type="radio" name="days_of_wk_available" id="weekendsOnly" value="Weekends only">
+                  Weekends only
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                      <hr class="aside-form_separator">
+                      
+                <label class="form-aside_label" for="shortLets">
+                  <input type="checkbox" name="short_lets_considered" id="shortLets" value="Y">
+                  Short term lets
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                
+                    </section>
+                      
+                  
+                  
+                  <section class="aside-form_section">
+                
+                    <hr class="aside-form_separator">
+      
+                    
+                      <br>
+                      <h3 class="aside-form_title">Rooms for</h3>
+                      
+                <label class="form-aside_label" for="anyGenderShare" title="Show Rooms for any gender">
+                  <input type="radio" name="rooms_for" id="anyGenderShare" value="">
+                  Don't mind
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                <label class="form-aside_label" for="femalesShare" title="Show Rooms for Females">
+                  <input type="radio" id="femalesShare" name="rooms_for" value="females">
+                  Females
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                <label class="form-aside_label" title="Show Rooms for Males" for="malesShare">
+                  <input type="radio" name="rooms_for" id="malesShare" value="males">
+                  Males
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                <label class="form-aside_label" for="couplesShare" title="Show Rooms for Couples">
+                  <input type="radio" name="rooms_for" id="couplesShare" value="couples">
+                  Couples
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                    
+                  </section>
+                
+                  <section class="aside-form_section">
+                    <h3 style="margin-top: 5px;" class="aside-form_title"> Sharing with  </h3>
+                    
+                <label class="form-aside_label" for="studentsOrProfessionals">
+                  <input type="radio" id="studentsOrProfessionals" name="share_type" value="">
+                  Any occupation
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                <label class="form-aside_label" for="professionalShare">
+                  <input type="radio" name="share_type" id="professionalShare" value="P">
+                  Professionals
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                <label class="form-aside_label" for="studentShare">
+                  <input type="radio" name="share_type" id="studentShare" value="S">
+                  Students
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                    <hr class="aside-form_separator">
+                    
+                <label class="form-aside_label" for="sharingWithAnyGender">
+                  <input type="radio" name="genderfilter" id="sharingWithAnyGender" value="">
+                  Any gender
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                <label class="form-aside_label" for="sharingWithfemales">
+                  <input type="radio" id="sharingWithfemales" name="genderfilter" value="females">
+                  Females
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+                
+                <label class="form-aside_label" for="sharingWithMales">
+                  <input type="radio" name="genderfilter" id="sharingWithMales" value="males">
+                  Males
+                  <span class="aside-form_input_highlight"></span>
+                </label>
+               
+                    <hr class="aside-form_separator">
+                    <h3 style="    margin-top: 5px;" class="aside-form_title">Age range</h3>
+                    <div     style="    margin-bottom: 20px;
+                    " 
+                    class="aside-form_inline-group">
+                      <input type="number" style="min-width: 50px;" name="min_age_req" value="" size="3" min="18" max="99" step="1" maxlength="4" placeholder="min" onkeypress="return event.key >= 0 &amp;&amp; event.key <= 9" data-advanced-form="">
+                      <span class="form_text_separator">to</span>
+                      <input type="number" style="min-width: 50px;" name="max_age_req" value="" size="3" min="18" max="99" step="1" maxlength="4" placeholder="max" onkeypress="return event.key >= 0 &amp;&amp; event.key <= 9" data-advanced-form="">
+                    </div>
+                    <hr class="aside-form_separator">
+     
+                  </div>  <!-- </div> borderdashed -->
+            </ul>
+           
+          </div>
+
+          <div  style="margin:15px" class="row2">
+            <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"> -->
+
+            <ul id="myUL">
+                <li><h3><b>Offers</b></h3></li>
+              <li></li>
+              <li>    <div class="blog-card">
+                <div class="meta">
+                    <div class="box">
+                        <div class="ribbon"><span>Popular!!</span></div>
+                    
+                  <div class="photo" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/2/23/Interieur%2C_schuifdeuren_in_de_kamer_en_suite_-_Amsterdam_-_20414152_-_RCE.jpg)"></div>
+                  <!-- <ul class="details">
+                    <li class="author"><a href="#">John Doe</a></li>
+                    <li class="date">Aug. 24, 2015</li>
+                    <li class="tags">
+                      <ul>
+                        <li><a href="#">Learn</a></li>
+                        <li><a href="#">Code</a></li>
+                        <li><a href="#">HTML</a></li>
+                        <li><a href="#">CSS</a></li>
+                      </ul>
+                    </li>
+                  </ul> -->
+                </div>
+              </div>
+                <div class="description">
+                  <h1>Amsterdam-Noord</h1>
+                  <h2><b><span class="price-tag-search-index"> € 450</span> </b></h2>
+                  <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+                  <p style="float:right;display:inline-block;" class="read-more">
+                    <a href="#">Read More</a>
+                  </p>
+                </div>
+              </div>
+
+              </li>
+              <li>    <div class="blog-card">
+                <div class="meta">
+                  <div class="photo" style="background-image: url(https://resources.kamernet.nl/image/68fc2798-95ee-4b99-af56-3e928644d118/resize/680-452)"></div>
+                  
+                </div>
+                <li>    <div class="blog-card">
+                  <div class="meta">
+                      <div class="box">
+                          <div class="ribbon"><span>Popular!!</span></div>
+                      
+                    <div class="photo" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/2/23/Interieur%2C_schuifdeuren_in_de_kamer_en_suite_-_Amsterdam_-_20414152_-_RCE.jpg)"></div>
+                   
+                  </div>
+                </div>
+                  <div class="description">
+                    <h1>Amsterdam-Noord</h1>
+                    <h2><b><span class="price-tag-search-index"> € 450</span> </b></h2>
+                    <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+                    <p style="float:right;display:inline-block;" class="read-more">
+                      <a href="#">Read More</a>
+                    </p>
+                  </div>
+                </div>
+  
+                </li>
+                <li>    <div class="blog-card">
+                  <div class="meta">
+                    <div class="photo" style="background-image: url(https://resources.kamernet.nl/image/68fc2798-95ee-4b99-af56-3e928644d118/resize/680-452)"></div>
+                  
+                  </div>
+            
+              <li>    <div class="blog-card">
+                <div class="meta">
+                    <div class="box">
+                        <div class="ribbon"><span>Popular!!</span></div>
+                    
+                  <div class="photo" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/2/23/Interieur%2C_schuifdeuren_in_de_kamer_en_suite_-_Amsterdam_-_20414152_-_RCE.jpg)"></div>
+                  
+                </div>
+              </div>
+                <div class="description">
+                  <h1>Amsterdam-Noord</h1>
+                  <h2><b><span class="price-tag-search-index"> € 450</span> </b></h2>
+                  <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+                  <p style="float:right;display:inline-block;" class="read-more">
+                    <a href="#">Read More</a>
+                  </p>
+                </div>
+              </div>
+
+              </li>
+              <li>    <div class="blog-card">
+                <div class="meta">
+                    <div class="photo" style="background-image: url(https://resources.kamernet.nl/image/68fc2798-95ee-4b99-af56-3e928644d118/resize/680-452)">
+                    
+                    </div>
+               
+                </div>
+
+                <div class="description">
+                  <h1>Amsterdam-Transvaalbuurt</h1>
+                  <h2><b><span class="price-tag-search-index"> € 350</span> </b></h2>
+                  <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+                  <p style="float:right;display:inline-block;" class="read-more">
+                    <a href="#">Read More</a>
+                  </p>
+                </div>
+              </div>
+              </li>
+            
+              <li>    <div class="blog-card">
+                <div class="meta">
+                  <div class="photo" style="background-image: url(https://resources.directwonen.nl/image/8a2349a5-1a88-4a69-a8f7-4687d78ba2f8)"></div>
+                
+                </div>
+                <div class="description">
+                  <h1>Amsterdam-De Nieuwe Pijp</h1>
+                  <h2><b><span class="price-tag-search-index"> € 250</span> </b></h2>
+                  <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+                  <p style="float:right;display:inline-block;" class="read-more">
+                    <a href="#">Read More</a>
+                  </p>
+                </div>
+              </div>
+              </li>
+           
+            </ul>
+            
+          </div>
+
+          <!-- <div class="row3">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+            <ul id="myUL">
+              <li><a href="#">Adele</a></li>
+              <li><a href="#">Agnes</a></li>
+            
+              <li><a href="#">Billy</a></li>
+              <li><a href="#">Bob</a></li>
+            
+              <li><a href="#">Calvin</a></li>
+              <li><a href="#">Christina</a></li>
+              <li><a href="#">Cindy</a></li>
+            </ul>
+          </div> -->
+          
+        </div>
+
+        <!-- <div class="grid-container-search-colums-2srow">
+
+          <div style="margin: 15px;" class="row-4">
+             
+            <ul id="myUL">
+
+                <ul id="myUL">
+                    <li><h3></p><b>Users</b></h3></li>
+                    <li><a href="#"> <img src="img_avatar2.png" height="42" width="42">Agnes </a></li>
+                    <li><a href="#"> <img src="img_avatar2.png" height="42" width="42">Billy </a></li>
+                    <li><a href="#"> <img src="img_avatar2.png" height="42" width="42">Bob </a></li>
+                    <li><a href="#"> <img src="img_avatar2.png" height="42" width="42">Calvin </a></li>
+                    <li><a href="#"> <img src="img_avatar2.png" height="42" width="42">Christina </a></li>
+                    <li><a href="#"> <img src="img_avatar2.png" height="42" width="42">Cindy </a></li>
+            </ul>
+          </div>
+
+          <div style="Margin:15px;" class="row5">
+           
+
+            <ul id="myUL">
+              <li><h3><b>Upcoming Events</b></h3></li>
+
+              <li> 
+                    <a href="#">  <img src="calendar.png" alt="Smiley face" height="42" width="42">
+                    Road-hiking Trip SanFrancisco-Seattle <button class="button-float-events">submit</button>
+                  </a>
+              </li>
+
+              <li><a href="#"> <img src="biketour-events.jpg" height="42" width="42">Free Ebike City Tour <button class="button-float-events">submit</button></a></li>
+              <li><a href="#"> <img src="weirdo.png" height="42" width="42">Weirdo Gathering<button class="button-float-events">submit</button></a></li>
+            </ul>
+          </div>
+
+       
+        </div> -->
+
+         
+          
+
+   
+<!-- --------- -->
+    <hr>
+<!-- --------- -->
+
+ </div>
+    <!-- end grid container -->
+
+
+
+   <h1 style= "text-align: center;">
+   &#9774; Never Stop Shining! &#9774;
+    </h1> 
+
+
+   <!-- //////////////////////////// footer //////////////////////////////////////-->
+<footer>
+  <div class="grid-container-footer">
+        <div class = "colum">
+      <P>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem, voluptates?</P>
+        </div>
+        <div class = "colum">
+      <P>Contact us | Need help?
+          Contact us by email
+          Call us on 0161 768 1162
+          Mon to Fri: 9am – 8.30pm
+          Weekends: 10am – 7.30pm
+          FAQ
+          Press Office</P>
+        </div>
+        <div class = "colum">
+      <P>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem, voluptates?</P>
+        </div>
+        <div class = "colum">
+      <P>Contact us | Need help?
+          Contact us by email
+          Call us on 0161 768 1162
+          Mon to Fri: 9am – 8.30pm
+          Weekends: 10am – 7.30pm
+          FAQ
+          Press Office</P>
+        </div>
+  <div class="2-row-grid-display" style= "display:flex;"></div>
+        <div class = "colum">
+      <P>Housing-project.com</P>
+        </div>
+        <div class = "colum">
+      <P style = "display: flex;">Follow us on: <span class= "icon-grid-footer"><i class="fab fa-github"></i> <i class="fab fa-instagram"></i> <i class="fab fa-facebook"> </i> <i class="fab fa-youtube"></i> <i class="fab fa-twitter"></i> </span></P>
+        </div>
+        <div class = "colum">
+      <P>©1999–2018 Flatshare Ltd.</P>
+        </div>  
+        <!-- <div class = "colum">
+      <P>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem, voluptates?</P>
+        </div> -->
+    
+   </div>
+</footer> 
+
+    <!-- <-- ////////////////////////////// end of footer //////////////////////////////// -->
+ 
+
+</body>
+</html>

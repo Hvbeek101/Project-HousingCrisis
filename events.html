@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Kamercrisis-events</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="navbar.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="hitmebutton.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="loginmodal.css" />
+    <link rel="stylesheet" href="searchcssscss/style-events.css">
+    <link rel="shortcut icon" href="favicon(1).ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script src="main.js"></script>
+    <script src="navbar.js"></script>
+    <style>
+            * {
+              box-sizing: border-box;
+            }
+
+            .price-tag-search-index{
+              color:#005480;
+            }
+            /* .box {
+  width: 200px; height: 300px;
+  position: relative;
+  border: 1px solid #BBB;
+  background: #EEE;
+} */
+.ribbon {
+  position: absolute;
+  left: -5px; top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 75px; height: 75px;
+  text-align: right;
+}
+.ribbon span {
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  width: 100px;
+  display: block;
+  background: #79A70A;
+  background: linear-gradient(#9BC90D 0%, #79A70A 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px; left: -21px;
+}
+.ribbon span::before {
+  content: "";
+  position: absolute; left: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid #79A70A;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #79A70A;
+}
+.ribbon span::after {
+  content: "";
+  position: absolute; right: 0px; top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid #79A70A;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #79A70A;
+}
+
+
+
+            .grid-container-search-colums{
+              margin:0px 100px 0 100px;
+            }
+            .grid-container-search-colums-2srow{
+              /* margin:0px 100px 0 100px; */
+            }
+            #myInput {
+              background-image: url('/css/searchicon.png');
+              background-position: 10px 12px;
+              background-repeat: no-repeat;
+              width: 100%;
+              font-size: 16px;
+              padding: 12px 20px 12px 40px;
+              border: 1px solid #ddd;
+              margin-bottom: 12px;
+            }
+            
+            #myUL {
+              list-style-type: none;
+              padding: 0;
+              margin: 0;
+            }
+            
+            #myUL li a {
+              border: 1px solid #ddd;
+              margin-top: -1px; /* Prevent double borders */
+              background-color: #f6f6f6;
+              padding: 12px;
+              text-decoration: none;
+              font-size: 18px;
+              color: black;
+              display: block
+            }
+            
+            #myUL li a:hover:not(.header) {
+              background-color: #eee;
+            }
+            .grid-container-search-colums{
+              display: grid;
+              grid-template-columns: 1fr 3fr 0fr;
+              /* grid-template-rows: 1fr 1fr 1fr; */
+              grid-template-areas: "row1" "row2" "row3";
+          }
+          .grid-container-search-colums-2srow{
+              display: grid;
+              grid-template-columns: 1fr 2fr 1fr;
+              /* grid-template-rows: 1fr 1fr 1fr; */
+              grid-template-areas: "row1" "row2" "row3";
+          }
+          .grid-container-top-section{
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: 1fr;
+            grid-template-areas: "row-0";
+            }
+          .button-float-events{
+            float:right;
+            width:90px;
+            border-radius:5px;
+            background-color: #4c61af;
+          }
+            </style>
+</head>
+
+
+<body>
+
+
+  
+<!-- login form -->
+  <div id="id01" class="modal">
+    
+    <form class="modal-content animate" action="/action_page.php">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <img src="img_avatar2.png" alt="Avatar" class="avatar">
+      </div>
+  
+      <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+  
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+          
+        <button type="submit">Login</button>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+        </label>
+      </div>
+  
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot <a href="#">password?</a></span>
+      </div>
+    </form>
+  </div>
+<!-- ----------------------------------------End of login form-------------------------------------------------------------------------   -->
+ <div class="header-brand">
+   <div class= "container-header">
+    <ul class="login-register-ul-right-top">
+      <li  onclick="document.getElementById('id01').style.display='block'" style="width:auto;"class ="login-register-right-top-li"><i class="far fa-user"></i>login</li>
+     <a href="register.html"><li class ="login-register-right-top-li"><i class="fas fa-user-plus"></i>Register</li></li></a>
+    </ul>
+  </div>
+    <div class="container-header">
+      <a href="index.html">
+      <img src="https://www.flaticon.com/premium-icon/icons/svg/1263/1263154.svg" style= "width: 68px;
+      margin: 10px 0px 0px 30px; padding:5px;" alt="">
+      <h2 class="h2-housing-project">Housing project</h2>
+    </a>
+    </div>
+</div> 
+    <header> 
+                <!-- #1527b2 color header idea!#2635a7 is also an idea -->
+    <nav class= "navbar-nav" >
+      <div class="container">
+            <div class= "menu">
+              <ul class="navbar-ul">
+                <li class="li-item1-navbar li-nav" >Home</li>
+                <li class="li-item2-navbar li-nav" >About</li>
+                <li class="li-item3-navbar li-nav" >Events</li>
+                <li class="li-item4-navbar li-nav" >Search</li>
+                <li class="li-item4-navbar li-nav" >Rent offers</li> 
+              </ul>
+            </div>
+            <div id="nav-bar-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div> 
+          </div>
+        </nav>
+        
+      </header>
+      
+      <!-- ////////////////////////////////////////////////////////////////////////////// -->
+      <!-- header h1 -->
+      <!-- ///////////////////////////////////////////////////////////////////////////// -->  
+      
+      
+
+      <div class="grid-container-search-colums">
+          <div style="margin:15px" class="row-1">
+          
+            <ul id="myUL">
+              <li><h3 style="margin-top: 5px;"></p><b>Search</b></h3></li>
+              
+
+              <div style="padding: 4px;
+              border: dashed #a9a9a9 5px;
+              margin-top: 10px;
+              width: 106%;
+              border-radius: 10px;" class="border-dashed-search">
+              <li> <input type="text" placeholder="Area or Postadress"></li>
+              <li> <select style="font-size: larger;" name="options" id="">
+                  <option value="Events">Events</option>
+                  <option value="Events">Users</option>
+                  <option value="Events">Offers</option>
+                </select> <select name="miles_from_max" style="font-size: larger;" id="radius">
+                    <option value="0">This area only</option>
+                    <option value="1">1 mile radius</option>
+                    <option value="2">2 mile radius</option>
+                    <option value="3">3 mile radius</option>
+                    <option value="4">4 mile radius</option>
+                    <option value="5">5 mile radius</option>
+                    <option value="10">10 mile radius</option>
+                    <option value="15">15 mile radius</option>
+                    <option value="20">20 mile radius</option>
+                    <option value="30">30 mile radius</option>
+                    <option value="40">40 mile radius</option>
+                  </select>  <input style="float:right; padding:0;font-size: larger;" type="submit" value="Submit">
+                  </li>
+              <ul>
+     
+                
+                    </section>
+                      
+                  
+                  
+
+     
+                    <!-- <div style="margin-top:20px; border: dashed #a9a9a9 5px; border-radius: 10px" class="date-picker-side-bar"> -->
+                    <!-- The date picker still has to be edited for ´from´ and ´to` -->
+                    <span>from</span> <input style="display:flex;" id="datePicker" type="date" /> <span>to</span> 
+                    <input style="display:flex;margin-bottom: 10px;" id="datePicker" type="date" />
+                  </div>  <!-- </div> borderdashed -->
+            </ul>
+
+        
+
+           
+          </div>
+
+          <div  style="margin:15px" class="row2">
+            <!-- <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name"> -->
+
+            <ul id="myUL">
+                <li><h3><b>Events</b></h3></li>
+             
+              <li>    <div class="blog-card">
+                <div class="meta">
+                   
+                    
+                  <div class="photo" style="width: 250px;background-image: url(calendar.png)">
+                  </div>
+
+                </div>
+              
+                <div class="description">
+                  <h1>Housing Monthly Meeting</h1>
+                  <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+                  <p style="float:right;display:inline-block;" class="read-more">
+                    <a href="#">Read More</a>
+                  </p>
+                </div>
+              </div>
+
+              </li>
+              <li>    <div class="blog-card">
+                <div class="meta">
+                  <div class="photo" style=" width: 250px;background-image: url(weirdo.png)"></div>
+         
+                </div>
+
+                <div class="description">
+                  <h1>Weirdo Gathering</h1>
+                  
+                  <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+                  <p style="float:right;display:inline-block;" class="read-more">
+                    <a href="#">Read More</a>
+                  </p>
+                </div>
+              </div>
+              </li>
+            
+              <li>    <div class="blog-card">
+                <div class="meta">
+                  <div class="photo" style="width: 250px;background-image: url(biketour-events.jpg)"></div>
+                
+                </div>
+                <div class="description">
+                  <h1>E-bike Event</h1>
+                  
+                  <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum dolorum architecto obcaecati enim dicta praesentium, quam nobis! Neque ad aliquam facilis numquam. Veritatis, sit.</p>
+                  <p style="float:right;display:inline-block;" class="read-more">
+                    <a href="#">Read More</a>
+                  </p>
+                </div>
+              </div>
+              </li>
+           
+            </ul>
+          </div>
+
+        </div>
+
+       
+          
+
+   
+<!-- --------- -->
+    <hr>
+<!-- --------- -->
+
+ </div>
+    <!-- end grid container -->
+
+
+
+   <h1 style= "text-align: center;">
+   &#9774; Never Stop Shining! &#9774;
+    </h1> 
+
+
+   <!-- //////////////////////////// footer //////////////////////////////////////-->
+<footer>
+  <div class="grid-container-footer">
+        <div class = "colum">
+      <P>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem, voluptates?</P>
+        </div>
+        <div class = "colum">
+      <P>Contact us | Need help?
+          Contact us by email
+          Call us on 0161 768 1162
+          Mon to Fri: 9am – 8.30pm
+          Weekends: 10am – 7.30pm
+          FAQ
+          Press Office</P>
+        </div>
+        <div class = "colum">
+      <P>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem, voluptates?</P>
+        </div>
+        <div class = "colum">
+      <P>Contact us | Need help?
+          Contact us by email
+          Call us on 0161 768 1162
+          Mon to Fri: 9am – 8.30pm
+          Weekends: 10am – 7.30pm
+          FAQ
+          Press Office</P>
+        </div>
+  <div class="2-row-grid-display" style= "display:flex;"></div>
+        <div class = "colum">
+      <P>Housing-project.com</P>
+        </div>
+        <div class = "colum">
+      <P style = "display: flex;">Follow us on: <span class= "icon-grid-footer"><i class="fab fa-github"></i> <i class="fab fa-instagram"></i> <i class="fab fa-facebook"> </i> <i class="fab fa-youtube"></i> <i class="fab fa-twitter"></i> </span></P>
+        </div>
+        <div class = "colum">
+      <P>©1999–2018 Flatshare Ltd.</P>
+        </div>  
+        <!-- <div class = "colum">
+      <P>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Exercitationem, voluptates?</P>
+        </div> -->
+    
+   </div>
+</footer> 
+
+    <!-- <-- ////////////////////////////// end of footer //////////////////////////////// -->
+ 
+
+</body>
+
+<script>
+
+
+// $(document).ready(function() {
+//   var now = new Date();
+//   var today = now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
+//   alert(today);
+//   $('#datePicker').val(today);
+// });
+
+</script>
+</html>

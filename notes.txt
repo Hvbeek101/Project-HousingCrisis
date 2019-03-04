@@ -1,0 +1,4 @@
+Bij het logo wil ik graag een margin hebben van 0 .
+
+
+Ik moet een media querie makenr van 1400px tot 800px
