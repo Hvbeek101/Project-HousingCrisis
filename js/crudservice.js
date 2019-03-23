@@ -36,3 +36,6 @@ function generateErrorHTMLOutput(error) {
   //        '<h5>Data:</h5>' + 
   //        '<pre>' + JSON.stringify(error.response.data, null, '\t') + '</pre>';
 }
+
+//REFERENCES:
+//-- https://codingthesmartway.com/getting-started-with-axios/
