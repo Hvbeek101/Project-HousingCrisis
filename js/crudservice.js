@@ -38,4 +38,5 @@ function generateErrorHTMLOutput(error) {
 }
 
 //REFERENCES:
+//-- https://github.com/freeCodeCamp/freeCodeCamp/blob/master/docs/how-to-setup-freecodecamp-locally.md
 //-- https://codingthesmartway.com/getting-started-with-axios/
